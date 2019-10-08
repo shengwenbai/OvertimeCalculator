@@ -5,11 +5,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link rel="stylesheet" href="./styles/index.css">
+  <title>加班计算器</title>
 </head>
 
 <body>
   <h1 class>加班计算器</h1>
+  <div class="container">
+    <div class="jumbotron">
+      <p class="lead">本月加班总时长：<span id='totalHrs'>40</span>小时<span id='viewRecords'>查看记录</span></p>
+      <button class='btn btn-primary' id='checkout'>打卡</button>
+      <div class="row centerEle">
+        <div class="col3">
+          <input type="text" class="form-control" placeholder="输入加班时长">
+        </div>
+        <div class="col3">
+          <button class='btn btn-primary' id='checkout'>按时长打卡</button>
+        </div>
+      </div>
+      <div class="row centerEle">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <div class="input-group date" id="datetimepicker4" data-target-input="nearest">
+              <input type="text" class="form-control datetimepicker-input" data-target="#datetimepicker4" />
+              <div class="input-group-append" data-target="#datetimepicker4" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript">
+          $(function () {
+            $('#datetimepicker4').datetimepicker({
+              format: 'L'
+            });
+          });
+        </script>
+        <div class="col3">
+          <button class='btn btn-primary' id='addOvertime'>补打卡</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
 
 </body>
 

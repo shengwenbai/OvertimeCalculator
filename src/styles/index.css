@@ -1,0 +1,15 @@
+h1,
+.jumbotron {
+  text-align: center;
+}
+
+
+
+.centerEle {
+  justify-content: center;
+  align-items: center;
+}
+
+.input-small {
+  width: 80px;
+}
