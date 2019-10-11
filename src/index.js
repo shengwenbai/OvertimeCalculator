@@ -1,12 +1,12 @@
 /* eslint-disable require-jsdoc */
 import 'bootstrap';
-// import moment from 'moment';
+// import * as moment from 'moment';
 import 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.css';
 import './styles/index.css';
 // import '@fortawesome/fontawesome-free/css/all.css';
-
+import ajaxGet from './utility.js';
 global.moment = require('moment');
 // import 'tempusdominus-bootstrap-4';
 require('tempusdominus-bootstrap-4');
@@ -27,23 +27,12 @@ $('#datetimepicker4').datetimepicker({
   format: 'L',
 });
 
-// 打卡
+// AjaxGet回调方法
+function callback(data) {
+  console.log(data);
+}
+
+// 打卡下班
 $('#checkout').unbind('click').click(function() {
-  $.ajax({
-    type: 'get',
-    url: 'http://localhost:50120/api/Overtime/Checkout',
-    contentType: 'Application/json;charset=utf-8',
-    data: null,
-    timeout: 15000,
-    dataType: 'json',
-    success: function(data) {
-      console.log(data);
-    },
-    error: function(ex) {
-      Console.log(ex);
-      if (ex.statusText == 'timeout') {
-        console.log('请求已超时');
-      }
-    },
-  });
+  ajaxGet('http://localhost:50120/api/Overtime/Checkout', null, callback);
 });

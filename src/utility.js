@@ -1,5 +1,5 @@
 // eslint-disable-next-line require-jsdoc
-function AjaxGet(requestUrl, param, callback) {
+export default function ajaxGet(requestUrl, param, callback) {
   $.ajax({
     type: 'get',
     url: requestUrl,
@@ -7,12 +7,12 @@ function AjaxGet(requestUrl, param, callback) {
     contentType: 'Application/json;charset=utf-8',
     dataType: 'json',
     timeout: 15000,
-    success: function (data) {
+    success: function(data) {
       if (callback) {
         callback(data);
       }
     },
-    error: function (ex) {
+    error: function(ex) {
       console.log(ex);
       if (ex.statusText == 'timeout') {
         $('.loading').hide();
@@ -20,4 +20,4 @@ function AjaxGet(requestUrl, param, callback) {
       }
     },
   });
-}
+};
