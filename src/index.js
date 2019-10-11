@@ -26,3 +26,24 @@ console.log(moment().format('e'));
 $('#datetimepicker4').datetimepicker({
   format: 'L',
 });
+
+// 打卡
+$('#checkout').unbind('click').click(function() {
+  $.ajax({
+    type: 'get',
+    url: 'http://localhost:50120/api/Overtime/Checkout',
+    contentType: 'Application/json;charset=utf-8',
+    data: null,
+    timeout: 15000,
+    dataType: 'json',
+    success: function(data) {
+      console.log(data);
+    },
+    error: function(ex) {
+      Console.log(ex);
+      if (ex.statusText == 'timeout') {
+        console.log('请求已超时');
+      }
+    },
+  });
+});

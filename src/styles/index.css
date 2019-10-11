@@ -4,11 +4,18 @@ h1,
 }
 
 h1 {
-  margin-top: 25px;
+  margin: 1rem 1rem;
+  color: #EACD76;
 }
 
 .jumbotron {
-  background-color: #F2FdFF
+  background-color: #F0F0F4;
+  background-image: url(../img/background.png);
+  border-radius: 3rem;
+}
+
+.jum2 {
+  background-color: #D2F0F4;
 }
 
 .centerEle {
@@ -20,8 +27,15 @@ h1 {
   width: 80px;
 }
 
+#checkout,
+#checkoutByHr,
+#addOvertime {
+
+  background-color: #177cB0
+}
+
 #checkout {
-  margin-bottom: 1rem;
+  margin-bottom: 1rem
 }
 
 .formRow {
@@ -29,7 +43,7 @@ h1 {
 }
 
 #totalHrs {
-  color: green;
+  color: #057748;
   font-weight: bold;
 }
 
@@ -38,9 +52,14 @@ h1 {
   margin-left: 0.5rem;
   text-decoration: underline;
   cursor: pointer;
-  color: blue;
+  color: #065279;
 }
 
 #viewRecords:hover {
-  color: darkorange;
+  color: #a76e44;
+}
+
+body {
+  background-image: url(../img/background.png);
+  background-color: #3d3b4f;
 }
