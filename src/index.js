@@ -5,6 +5,7 @@ import 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.css';
 import './styles/index.css';
+import './styles/loader.css';
 // import '@fortawesome/fontawesome-free/css/all.css';
 import ajaxGet from './utility.js';
 global.moment = require('moment');
@@ -31,8 +32,23 @@ $('#datetimepicker4').datetimepicker({
 function callback(data) {
   console.log(data);
 }
+// 显示本月加班记录
+function showMonthRecords(res) {
+  $('.loader').hide();
+  console.log(res);
+  if (res.result) {
+    $('#monthRecordsModal').modal('show');
+  } else {
+
+  }
+}
 
 // 打卡下班
 $('#checkout').unbind('click').click(function() {
   ajaxGet('http://localhost:50120/api/Overtime/Checkout', null, callback);
+});
+// 查看本月加班记录
+$('#viewRecords').unbind('click').click(function() {
+  $('.loader').show();
+  ajaxGet('http://localhost:50120/api/Overtime/GetOvertimeThisMonth', null, showMonthRecords);
 });
