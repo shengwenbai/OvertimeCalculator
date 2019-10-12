@@ -36,7 +36,18 @@ function callback(data) {
 function showMonthRecords(res) {
   $('.loader').hide();
   console.log(res);
+  let html = '<ul class="list-group">';
   if (res.result) {
+    if (res.data.length > 0) {
+      const listHtml = res.data.map((x) => '<li class="list-group-item">' +
+        moment(x.overtimeDate).format('YYYY-MM-DD') +
+        '<span class="hrSpan">' +
+        parseFloat(x.overtimeHrs).toFixed(2) +
+        '小时</span></li>').join('');
+      html += listHtml;
+      html += '</ul>';
+      $('.modal-body').html(html);
+    }
     $('#monthRecordsModal').modal('show');
   } else {
 
