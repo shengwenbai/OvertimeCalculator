@@ -64,6 +64,16 @@ h1 {
   position: absolute;
 }
 
+.redAlert,
+.greenAlert,
+.yellowAlert,
+.customAlert {
+  z-index: 99999;
+  position: fixed;
+  width: 30%;
+  left: 35%;
+}
+
 body {
   background-image: url(../img/background.png);
   background-color: #3d3b4f;

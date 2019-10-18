@@ -19,11 +19,35 @@
       <p>或</p>
       <div class="row centerEle formRow">
         <div class="col-2">
-          <input type="text" class="form-control" placeholder="输入加班时长">
+          <input type="text" class="form-control" id="hrsToday" placeholder="输入加班时长">
         </div>
         <div class="col2">
           <button class='btn btn-primary' id='checkoutByHr'>按时长打卡</button>
         </div>
+      </div>
+      <div class="alert redAlert alert-danger alert-dismissible fade show" style="display:none" role="alert">
+        服务器崩了！请稍后再试。
+        <button type="button" class="close" aria-label="Close" onclick="$('.redAlert').hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="alert customAlert alert-danger alert-dismissible fade show" style="display:none" role="alert">
+        <span id='customAlertText'></span>
+        <button type="button" class="close" aria-label="Close" onclick="$('.customAlert').hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="alert greenAlert alert-success alert-dismissible fade show" style="display:none" role="alert">
+        打卡成功！
+        <button type="button" class="close" aria-label="Close" onclick="$('.greenAlert').hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="alert yellowAlert alert-warning alert-dismissible fade show" style="display:none" role="alert">
+        今天已经打过卡了！（如需修改打卡时间，可使用按时长打卡）
+        <button type="button" class="close" aria-label="Close" onclick="$('.yellowAlert').hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
     </div>
     <div class="jumbotron jum2">
@@ -41,7 +65,7 @@
           <!-- </div> -->
         </div>
         <div class="col-2">
-          <input type="text" class="form-control" placeholder="输入加班时长">
+          <input type="text" id="hrs2add" class="form-control" placeholder="输入加班时长">
         </div>
         <div class="col3">
           <button class='btn btn-primary' id='addOvertime'>补打卡</button>
