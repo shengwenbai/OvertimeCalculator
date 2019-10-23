@@ -6,10 +6,12 @@ const {
   CleanWebpackPlugin,
 } = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
-    app: './src/index.js',
+    index: './src/index.js',
+    login: './src/login.js',
     // print: './src/print.js'
     // another: './src/another-module.js',
     // contact: './src/contact/contact.js'
@@ -22,8 +24,18 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      filename: 'index.html',
       title: '加班计算器',
       template: 'src/index.html',
+      favicon: './favicon.ico',
+      chunks: ['index'],
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'login.html',
+      title: '登录',
+      template: 'src/login.html',
+      favicon: './favicon.ico',
+      chunks: ['login'],
     }),
     // new HtmlWebpackPlugin({
     //   filename: 'contact.html',
@@ -35,39 +47,58 @@ module.exports = {
     new MomentLocalesPlugin({
       localesToKeep: ['zh-cn'],
     }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // all options are optional
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+      ignoreOrder: false, // Enable to remove warnings about conflicting order
+    }),
   ],
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
-  },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: 'all',
+  //   },
+  // },
   module: {
     rules: [{
       test: require.resolve('jquery'), // require.resolve 用来获取模块的绝对路径
       use: [{
         loader: 'expose-loader',
         options: 'jQuery',
-      }, {
+      },
+      {
         loader: 'expose-loader',
         options: '$',
-      }],
+      },
+      ],
     },
     {
       test: /\.css$/,
-      use: [
-        'style-loader',
-        'css-loader',
+      use: [{
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          // you can specify a publicPath here
+          // by default it uses publicPath in webpackOptions.output
+          publicPath: '../',
+          hmr: process.env.NODE_ENV === 'development',
+        },
+      },
+      // 'style-loader',
+      'css-loader',
       ],
     },
     {
       test: /\.(png|svg|jpg|jpeg|gif|eot|ttf|woff)$/,
       loader: 'url-loader',
       options: {
+        publicPath: './',
         limit: 10000,
+        name: 'img/[name].[hash:8].[ext]',
       },
     },
     {

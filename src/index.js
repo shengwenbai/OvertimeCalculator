@@ -31,6 +31,15 @@ $('#datetimepicker4').datetimepicker({
 });
 
 $(function() {
+  $('.loader').show();
+  const token = sessionStorage.getItem('token');
+  const params = {};
+  params.token = token;
+  ajaxGet(
+      'http://localhost:35948/api/Identity/ValidateToken',
+      params,
+      initialCallBack
+  );
   getMonthHrs();
 });
 
@@ -134,10 +143,10 @@ function showMonthRecords(res) {
           .map(
               (x) =>
                 '<li class="list-group-item">' +
-            moment(x.overtimeDate).format('YYYY-MM-DD') +
-            '<span class="hrSpan">' +
-            parseFloat(x.overtimeHrs).toFixed(2) +
-            '小时</span></li>'
+          moment(x.overtimeDate).format('YYYY-MM-DD') +
+          '<span class="hrSpan">' +
+          parseFloat(x.overtimeHrs).toFixed(2) +
+          '小时</span></li>'
           )
           .join('');
     } else {
@@ -190,4 +199,19 @@ function apiCallback(res) {
   } else {
     showAlerts(0);
   }
+}
+
+function initialCallBack(res) {
+  if (res.result) {
+    if (!res.data) {
+      window.location.href = 'login.html';
+    }
+  } else {
+    $('.customAlert #customAlertText').text('服务器崩了！请稍后再试');
+    $('.customAlert').show();
+    setTimeout(() => {
+      $('.customAlert').slideUp(1000);
+    }, 1000);
+  }
+  $('.loader').hide();
 }
