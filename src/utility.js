@@ -15,8 +15,14 @@ export default function ajaxGet(requestUrl, param, callback) {
     error: function(ex) {
       console.log(ex);
       if (ex.statusText == 'timeout') {
-        $('.loading').hide();
+        $('.loader').hide();
         console.log('网络超时，请刷新页面重试！');
+      } else {
+        $('.loader').hide();
+        $('.redAlert').show();
+        setTimeout(() => {
+          $('.redAlert').slideUp(1000);
+        }, 1000);
       }
     },
   });
