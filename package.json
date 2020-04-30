@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "expose-loader": "^0.7.5",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "moment": "^2.24.0",
     "tempusdominus-bootstrap-4": "^5.1.2"
   },
